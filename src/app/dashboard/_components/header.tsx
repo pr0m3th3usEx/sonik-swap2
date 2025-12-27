@@ -1,3 +1,13 @@
+import { MenuIcon } from "lucide-react";
+import Link from "next/link";
+import Logo from "src/components/logo";
+import { Button } from "src/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "src/components/ui/dropdown-menu";
 import { SidebarTrigger } from "src/components/ui/sidebar";
 import { cn } from "src/lib/utils/style";
 
@@ -18,17 +28,24 @@ export default function DashboardHeader({ navbarStyle }: DashboardHeaderProps) {
       <div className="flex w-full items-center justify-between px-4 lg:px-4">
         <div className="flex items-center gap-1 lg:gap-2">
           <SidebarTrigger />
-          {/* <Separator
-            orientation="vertical"
-            className="mx-2 data-[orientation=vertical]:h-4"
-          /> */}
+          <Link href="/">
+            <Logo size="sm" />
+          </Link>
         </div>
-        {/* <div className="flex items-center gap-2">
-          <ToggleThemeButton />
-          <Suspense fallback={<Skeleton className="h-8 w-8 rounded-full" />}>
-            <AccountModeSwitcher />
-          </Suspense>
-        </div> */}
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" asChild>
+              <div className="cursor-pointer bg-accent hover:bg-accent rounded-full! border-2 border-primary duration-700 shadow-md">
+                <MenuIcon className="text-primary" />
+              </div>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuItem>My account</DropdownMenuItem>
+            <DropdownMenuItem>Log out</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
