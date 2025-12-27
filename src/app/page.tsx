@@ -1,13 +1,50 @@
 import Background from "src/components/background";
+import Logo from "src/components/logo";
+import { Button } from "src/components/ui/button";
+import SpotifyLogo from "src/lib/theme/assets/icons/spotify.svg";
+import DeezerLogo from "src/lib/theme/assets/icons/deezer.svg";
 import { cn } from "src/lib/utils/style";
 
 export default function Home() {
   return (
     <div className={cn("w-screen h-screen", "flex flex-col gap-12")}>
       <Background />
-      {/* <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        Home
-      </main> */}
+      <header className={cn("flex justify-center", "py-5")}>
+        <Logo size="lg" />
+      </header>
+      <main className="grow flex flex-col justify-center items-center gap-12 px-14 uppercase">
+        <h2 className={cn("text-center text-5xl font-heading")}>
+          Transfer your Spotify favourite tracks & playlists to Deezer and
+          vice-versa
+        </h2>
+
+        <div className="flex flex-col gap-3">
+          <Button
+            // variant="spotify"
+            size="lg"
+            className="font-semibold flex gap-4"
+          >
+            <SpotifyLogo className="w-6! h-6!" />
+            Login with Spotify
+          </Button>
+          <Button
+            // variant="deezer"
+            size="lg"
+            className="font-semibold flex gap-4"
+          >
+            <DeezerLogo className="w-6! h-6!" />
+            Login with Deezer
+          </Button>
+        </div>
+      </main>
+      <footer className="flex justify-center py-5">
+        <p className="text-foreground/90">
+          Made with ❤️ by{" "}
+          <a className="hover:underline" href="https://github.com/pr0m3th3usex">
+            pr0m3th3usEx
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
