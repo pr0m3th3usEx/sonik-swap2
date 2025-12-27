@@ -1,4 +1,9 @@
 import { forwardRef } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "src/components/ui/tooltip";
 import { getProviderById } from "src/lib/providers/provider-config";
 import { cn } from "src/lib/utils/style";
 
@@ -16,21 +21,28 @@ const ProviderItem = forwardRef<
   const initial = provider?.name.charAt(0) || "?";
 
   return (
-    <div
-      ref={ref}
-      {...props}
-      style={
-        {
-          [`--provider-color`]: color,
-        } as React.CSSProperties
-      }
-      className={cn(
-        `bg-(--provider-color) uppercase w-full aspect-square rounded-sm justify-center items-center flex font-medium text-lg text-white`,
-        className,
-      )}
-    >
-      {initial}
-    </div>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div
+          ref={ref}
+          {...props}
+          style={
+            {
+              [`--provider-color`]: color,
+            } as React.CSSProperties
+          }
+          className={cn(
+            `bg-(--provider-color) uppercase w-full aspect-square rounded-sm justify-center items-center flex font-medium text-lg text-white`,
+            className,
+          )}
+        >
+          {initial}
+        </div>
+      </TooltipTrigger>
+      <TooltipContent>
+        {provider ? provider.name : "Unknown Provider"}
+      </TooltipContent>
+    </Tooltip>
   );
 });
 
